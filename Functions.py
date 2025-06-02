@@ -81,4 +81,36 @@ def draw_biker (scr,pos):
         scr.blit(biker, bikerrect)
     return scr
 
+# 4 - Making Pacman and the Ghosts move
+
+STOP, UP, DOWN, LEFT, RIGHT = (0, 0), (0, -1), (0, 1), (-1, 0), (1, 0)
+direction = STOP or UP or DOWN or LEFT or RIGHT
+
+def move (pos, direction, speed):
+    newpos = []
+    for coord in pos:
+        y = coord[0]
+        x = coord[1]
+
+        # moving with rounding position
+        if direction == STOP:
+            newpos.append((y,x))
+        elif direction == UP:
+            x = round(x)
+            y = y + direction[1]*speed
+            newpos.append((y,x))
+        elif direction == DOWN:
+            x = round(x)
+            y = y + direction[1]*speed
+            newpos.append((y,x))
+        elif direction == LEFT:
+            y = round(y)
+            x = x + direction[0]*speed
+            newpos.append((y,x))
+        elif direction == RIGHT:
+            y = round(y)
+            x = x + direction[0]*speed
+            newpos.append((y,x))
+    return newpos
+
 

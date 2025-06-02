@@ -1,10 +1,15 @@
 import pygame as pg
 import Functions as F
 from math import sqrt
+import random
 
 map, biker_pos,bee_pos = F.load_map("map.txt")
 
-stop, up, down, left, right = (0,0), (0,-1), (0,1), (-1, 0), (1,0)
+STOP, UP, DOWN, LEFT, RIGHT = (0, 0), (0, -1), (0, 1), (-1, 0), (1, 0)
+direction = STOP or UP or DOWN or LEFT or RIGHT
+
+biker_speed = 0.1
+bee_speed = 0.05
 
 pg.init()
 pg.mixer.init()
@@ -25,19 +30,19 @@ while running:
         running = False
 
     elif keys[pg.K_UP]:
-        direction = up
+        direction = UP
 
     elif keys[pg.K_DOWN]:
-        direction = down
+        direction = DOWN
 
     elif keys[pg.K_LEFT]:
-        direction = left
+        direction = LEFT
 
     elif keys[pg.K_RIGHT]:
-        direction = right
+        direction = RIGHT
 
     else:
-        direction = stop
+        direction = STOP
 
     for event in pg.event.get():
         if event.type == pg.QUIT:
@@ -64,4 +69,7 @@ while running:
                 running = False
 
 pg.quit()
+
+
+bonjour i love python so much
 
