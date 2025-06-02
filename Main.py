@@ -3,6 +3,8 @@ import Functions as F
 from math import sqrt
 import random
 
+# screen : 1320 x 630
+
 map, biker_pos,bee_pos = F.load_map("map.txt")
 
 STOP, UP, DOWN, LEFT, RIGHT = (0, 0), (0, -1), (0, 1), (-1, 0), (1, 0)
@@ -21,6 +23,8 @@ pg.mixer.music.load("background.mp3")
 pg.mixer.music.set_volume(0.4)
 pg.mixer.music.play(-1)
 print("I am going to win the competition!!!!")
+
+F.start_screen(scr, map)
 
 while running:
     pg.event.pump()
@@ -68,8 +72,9 @@ while running:
                 pg.mixer.music.stop()
                 running = False
 
+
 pg.quit()
 
 
-bonjour i love python so muchukjhgkjhgkjhgk
+
 
