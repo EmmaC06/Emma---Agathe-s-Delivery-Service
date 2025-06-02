@@ -15,6 +15,7 @@ running = True
 pg.mixer.music.load("background.mp3")
 pg.mixer.music.set_volume(0.4)
 pg.mixer.music.play(-1)
+print("I am going to win the competition!!!!")
 
 while running:
     pg.event.pump()
