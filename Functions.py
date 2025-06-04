@@ -17,9 +17,6 @@ bikerrect = biker.get_rect()
 tree = pg.image.load("tree.png")
 treerect = tree.get_rect()
 
-delivery = pg.image.load("delivery.png")
-deliveryrect = delivery.get_rect()
-
 startscreen = pg.image.load("scrstart.png")
 startscreenrect = startscreen.get_rect()
 
@@ -69,9 +66,6 @@ def draw_map (scr,map):
             elif char == "F":
                 flowerrect.center = (col_idx * 30 + 15, row_idx * 30 + 15)
                 scr.blit(flower,flowerrect)
-            elif char == "D":
-                deliveryrect.center = (col_idx * 30 + 15, row_idx * 30 + 15)
-                scr.blit(delivery,deliveryrect)
     return scr
 
 
@@ -174,49 +168,49 @@ def start_screen(scr, map):
     scr.blit(startscreen, (0, 0))
     
     # Set up fonts
-    title_font = pg.font.Font(None, 48)
+    title_font = pg.font.Font(None, 34)
     story_font = pg.font.Font(None, 28)
     small_font = pg.font.Font(None, 22)
 
-    black = (0, 0, 0)
+    black = (59, 10, 15)
 
     # title
-    title = "Thank you for choosing EA Delivery Service"
+    title = "Thank you for choosing EA Service"
     titlesurface = title_font.render(title, True, black)
-    title_rect = titlesurface.get_rect(center=(660, 80))
+    title_rect = titlesurface.get_rect(center=(260, 80))
     scr.blit(titlesurface, title_rect)
 
     # story
-    story1 = "Agathe and Emma found bee hives. Help them"
-    story2 = "collect all flowers and deliver it to the"
-    story3 = "house, avoiding the b(ee)'s! Don't get stung"
-    story4 = "and don't be late, it'll cost you loads!"
+    story1 = "Agathe and Emma found bee hives, they dropped all their flowers running away"
+    story2 = "Help them collect all flowers"
+    story3 = "Avoid the b(ee)'s and the b(ee)hives!"
+    story4 = "Don't get stung!!"
 
     storysurface1 = story_font.render(story1, True, black)
-    story_rect1 = storysurface1.get_rect(center=(660, 120))
+    story_rect1 = storysurface1.get_rect(center=(370, 120))
     scr.blit(storysurface1, story_rect1)
 
     storysurface2 = story_font.render(story2, True, black)
-    story_rect2 = storysurface2.get_rect(center=(660, 150))
+    story_rect2 = storysurface2.get_rect(center=(260, 150))
     scr.blit(storysurface2, story_rect2)
 
     storysurface3 = story_font.render(story3, True, black)
-    story_rect3 = storysurface3.get_rect(center=(660, 180))
+    story_rect3 = storysurface3.get_rect(center=(260, 180))
     scr.blit(storysurface3, story_rect3)
 
     storysurface4 = story_font.render(story4, True, black)
-    story_rect4 = storysurface4.get_rect(center=(660, 210))
+    story_rect4 = storysurface4.get_rect(center=(460, 210))
     scr.blit(storysurface4, story_rect4)
 
 
     # True story
     truestory_surface = small_font.render("[Based on a true story]", True, black)
-    truestory_rect = truestory_surface.get_rect(center=(660, 250))
+    truestory_rect = truestory_surface.get_rect(center=(600, 250))
     scr.blit(truestory_surface, truestory_rect)
 
     # Press B to start
     pressb_surface = small_font.render("Press 'B' to start", True, black)
-    pressb_rect = pressb_surface.get_rect(center=(660, 300))
+    pressb_rect = pressb_surface.get_rect(center=(600, 300))
     scr.blit(pressb_surface, pressb_rect)
 
     pg.display.flip()
@@ -237,7 +231,7 @@ def start_screen(scr, map):
     background = draw_map(scr, map)
     scr.blit(background, (0, 0))
     font = pg.font.Font(None, 40)
-    text = font.render("oh no! you pressed on a bee, all the b(ee)'s are looking for you now. Run!", True, (255, 255, 0))
+    text = font.render("Oh no! you pressed on a B(ee), all the b(ee)'s are chasing you now. Bike!", True, (255, 255, 0))
     text_rect = text.get_rect(center=(scr.get_width() // 2, scr.get_height() // 2))
     scr.blit(text, text_rect)
     pg.display.flip()
@@ -261,7 +255,7 @@ def final_screen(scr, map):
     scr.blit(background, (0, 0))
     
     font = pg.font.Font(None, 40)
-    text = font.render("thankyou for the flowers! it took you a while though", True, (255, 255, 0))
+    text = font.render("Thankyou for the flowers! Took you long enough...", True, (255, 255, 0))
     text_rect = text.get_rect(center=(scr.get_width() // 2, scr.get_height() // 2))
     scr.blit(text, text_rect)
     

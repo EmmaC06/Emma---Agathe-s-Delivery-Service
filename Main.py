@@ -102,6 +102,7 @@ while running:
     if flower == 0:
         print("You win!")
         running = False
+        F.final_screen(scr, map)
 
     # Lose
 
@@ -120,8 +121,7 @@ while running:
                 print("Game Over!")
                 running = False
 
-    if running == False:
-        F.final_screen(scr, map)
+
 
 pg.quit()
 
