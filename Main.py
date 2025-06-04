@@ -10,7 +10,7 @@ map, biker_pos, bee_pos, hive_pos = F.load_map("map.txt")
 STOP, UP, DOWN, LEFT, RIGHT = (0, 0), (0, -1), (0, 1), (-1, 0), (1, 0)
 direction = STOP or UP or DOWN or LEFT or RIGHT
 
-biker_speed = 0.1
+biker_speed = 0.12
 bee_speed = 0.05
 
 pg.init()
