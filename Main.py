@@ -5,7 +5,7 @@ import random
 
 # screen : 1320 x 630
 
-map, biker_pos,bee_pos = F.load_map("map.txt")
+map, biker_pos, bee_pos, hive_pos = F.load_map("map.txt")
 
 STOP, UP, DOWN, LEFT, RIGHT = (0, 0), (0, -1), (0, 1), (-1, 0), (1, 0)
 direction = STOP or UP or DOWN or LEFT or RIGHT
@@ -66,7 +66,7 @@ while running:
     F.draw_biker(scr, biker_pos)
 
     # Move Biker
-    if not F.check_tree(biker_pos, direction, map):
+    if not F.check_tree(biker_pos, direction, map) or F.check_behive(biker_pos, direction, map):
         biker_pos = F.move(biker_pos, direction, biker_speed)
 
         for (row_idx, col_idx) in biker_pos:
@@ -113,6 +113,15 @@ while running:
                 print("Game Over!")
                 running = False
 
+    for bik_row, bik_col in biker_pos:
+        for hive_row, hive_col in hive_pos:
+            distance = sqrt((bik_row - hive_row) ** 2 + (bik_col - hive_col) ** 2)
+            if distance < 1:
+                print("Game Over!")
+                running = False
+
+    if running == False:
+        F.final_screen(scr, map)
 
 pg.quit()
 

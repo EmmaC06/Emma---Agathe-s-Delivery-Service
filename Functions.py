@@ -30,6 +30,7 @@ def load_map (mapfile):
     map = []
     biker_pos = []
     bee_pos = []
+    hive_pos = []
     with open(mapfile,"r") as f:
         lines = f.readlines()
         line_coord = 0
@@ -41,10 +42,12 @@ def load_map (mapfile):
                     biker_pos.append((line_coord,char_coord))
                 if char == "B":
                     bee_pos.append((line_coord,char_coord))
+                if char == "W":
+                    hive_pos.append((line_coord,char_coord))
                 char_coord += 1
             line_coord += 1
         mapfile = f.read()
-    return map,biker_pos,bee_pos
+    return map,biker_pos,bee_pos, hive_pos
 
 # 2 - Initializing the screen
 
@@ -250,6 +253,7 @@ def start_screen(scr, map):
                 wait = False
         pg.time.wait(300)
 
+
 # drawing final screen
 def final_screen(scr, map):
     scr.fill((60, 95, 45))  
@@ -264,4 +268,3 @@ def final_screen(scr, map):
     pg.display.flip()
 
     pg.time.wait(3000)
-
