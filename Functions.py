@@ -84,7 +84,7 @@ def draw_biker (scr,pos):
         scr.blit(biker, bikerrect)
     return scr
 
-# 4 - Making Pacman and the Ghosts move
+# 4 - Making Biker and the Bees move
 
 STOP, UP, DOWN, LEFT, RIGHT = (0, 0), (0, -1), (0, 1), (-1, 0), (1, 0)
 direction = STOP or UP or DOWN or LEFT or RIGHT
@@ -116,6 +116,55 @@ def move (pos, direction, speed):
             newpos.append((y,x))
     return newpos
 
+
+def check_tree (pos, direction, maze):
+    tree = []
+    for row_idx, row in enumerate(maze):
+        for col_idx, char in enumerate(row):
+            if char == "#":
+                tree.append((row_idx, col_idx))
+
+    for (row_idx, col_idx) in pos:
+        check_row = round (row_idx + direction[1]*0.5)
+        check_col = round (col_idx + direction[0]*0.5)
+        if (check_row, check_col) in tree:
+            return True
+    return False
+
+def check_behive (pos, direction, maze):
+    hive = []
+    for row_idx, row in enumerate(maze):
+        for col_idx, char in enumerate(row):
+            if char == "W":
+                hive.append((row_idx, col_idx))
+
+    for (row_idx, col_idx) in pos:
+        check_row = round (row_idx + direction[1]*0.5)
+        check_col = round (col_idx + direction[0]*0.5)
+        if (check_row, check_col) in hive:
+            return True
+    return False
+
+def bee_move(pos, direction, maze):
+    directions = [UP, DOWN, LEFT, RIGHT]
+    possible_direction = {UP : DOWN, DOWN : UP, LEFT : RIGHT, RIGHT : LEFT}
+
+    possible = []
+
+    for direction in directions:
+        if direction == possible_direction.get(direction):
+            continue #allows the bees to not go back directly
+
+        #Next cells
+        next_row = round(pos[0] + direction[1]*0.5)
+        next_col = round(pos[1] + direction[0] * 0.5)
+
+        if 0 <= next_row < len(maze) and 0 <= next_col < len(maze[0]):
+            if maze[next_row][next_col] != "#" :
+                possible.append(direction)
+
+    return possible
+
 # start screen: draw screen and press 'b'
 def start_screen(scr, map):
     # Draw the start screen image
@@ -138,7 +187,7 @@ def start_screen(scr, map):
     story1 = "Agathe and Emma found bee hives. Help them"
     story2 = "collect all flowers and deliver it to the"
     story3 = "house, avoiding the b(ee)'s! Don't get stung"
-    story4 = "and don't be late, it'll cost you loan!"
+    story4 = "and don't be late, it'll cost you loads!"
 
     storysurface1 = story_font.render(story1, True, black)
     story_rect1 = storysurface1.get_rect(center=(660, 120))
@@ -201,5 +250,18 @@ def start_screen(scr, map):
                 wait = False
         pg.time.wait(300)
 
+# drawing final screen
+def final_screen(scr, map):
+    scr.fill((60, 95, 45))  
+    background = draw_map(scr, map)
+    scr.blit(background, (0, 0))
+    
+    font = pg.font.Font(None, 40)
+    text = font.render("thankyou for the flowers! it took you a while though", True, (255, 255, 0))
+    text_rect = text.get_rect(center=(scr.get_width() // 2, scr.get_height() // 2))
+    scr.blit(text, text_rect)
+    
+    pg.display.flip()
 
+    pg.time.wait(3000)
 
